@@ -1,0 +1,33 @@
+---
+- name: RELOAD SWITCH AND VERIFY NEW SOFTWARE VERSION
+  hosts: access
+  gather_facts: false
+  become: yes
+
+  tasks:
+
+   - name: SAVE RUNNING CONFIG
+     cli_command:
+      command: write
+
+   - name: RELOAD SWITCH
+     cli_command:
+      command: reload
+      prompt: .*
+      answer: y
+
+   - name: RESET SSH CONNECTION
+     meta: reset_connection
+
+   - name: WAIT FOR DEVICE TO BE RELOADED
+     wait_for_connection:
+      delay: 60
+      timeout: 1200
+
+   - name: GET NEW SOFTWARE VERSION
+     cli_command:
+      command: show version
+     register: SHOWVER
+     local_action: copy content="{{ SHOWVER }}" dest="./{{ inventory_hostname }}_{{ ansible_date_time.date }}_show-ver.txt"
+
+   - debug: msg="{{ SHOWVER.stdout }}"
