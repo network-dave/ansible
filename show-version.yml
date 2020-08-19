@@ -1,0 +1,16 @@
+---
+- name: GET SHOW VERSION FROM DEVICES AND SAVE TO FILE
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+  strategy: free
+
+  tasks:
+
+  - name: GET SHOW VERSION FROM DEVICE
+    cli_command:
+      command: show version
+    register: SHOWVER
+  
+  - name: COPY OUTPUT TO FILE
+    local_action: copy content="{{ SHOWVER.stdout }}" dest="./{{ inventory_hostname }}_show-version.txt"

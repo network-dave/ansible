@@ -1,0 +1,11 @@
+[hosts]
+172.16.62.101
+172.16.62.102
+172.16.62.103
+
+[hosts:vars]
+ansible_user = id123456
+ansible_password = THIS_IS_A_BAD_IDEA
+ansible_network_os = ios
+ansible_ssh_common_args = -o ProxyCommand="nc -x 127.0.0.1:3128 %h %p"
+timeout = 10
