@@ -9,7 +9,7 @@
 
   - name: GET SHOW VERSION FROM DEVICE
     cli_command:
-      commands: show version
+      command: show version
     register: SHOWVER
   
   - name: COPY OUTPUT TO FILE

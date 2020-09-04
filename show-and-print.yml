@@ -1,0 +1,16 @@
+--- 
+- name: RUN COMMAND AND PRINT OUTPUT
+  hosts: all
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+
+    - name: RUN COMMAND
+      cli_command:
+        commands: show ip interface brief
+      register: command_output
+
+    - name: PRINT OUTPUT TO TERMINAL
+      debug:
+        msg: "{{command_output.stdout}}"
