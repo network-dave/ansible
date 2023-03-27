@@ -7,7 +7,7 @@ Feel free to modify them for your own usage.
 
 ## License
 
-Copyright (C) 2020 David Paneels
+Copyright (C) 2023 David Paneels
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
