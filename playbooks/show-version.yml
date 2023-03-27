@@ -1,4 +1,9 @@
 ---
+#
+# Ansible playbook to retrieve the "show version" from a device
+# and save the output to a text file.
+#
+
 - name: GET SHOW VERSION FROM DEVICES AND SAVE TO FILE
   hosts: all
   gather_facts: false
