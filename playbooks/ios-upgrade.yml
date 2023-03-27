@@ -1,6 +1,9 @@
 ---
 #
-# Ansible playbook to upgrade the OS image of a network device.
+# Ansible playbook to upgrade the OS image of a network device,
+# assuming that the new image has been uploaded and configured.
+#
+# TODO: Add task to upload the image and update the boot variable.
 #
 
 - name: RELOAD SWITCH AND VERIFY NEW SOFTWARE VERSION
