@@ -1,4 +1,8 @@
 ---
+#
+# Ansible playbook to upgrade the OS image of a network device.
+#
+
 - name: RELOAD SWITCH AND VERIFY NEW SOFTWARE VERSION
   hosts: all
   gather_facts: false
