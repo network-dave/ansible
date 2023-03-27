@@ -1,4 +1,9 @@
 --- 
+#
+# Ansible playbook to run a command on a network device
+# and print the resulting output to stdout.
+#
+
 - name: RUN COMMAND AND PRINT OUTPUT
   hosts: all
   connection: network_cli
