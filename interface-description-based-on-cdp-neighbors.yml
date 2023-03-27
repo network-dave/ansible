@@ -1,0 +1,19 @@
+---
+
+# This is an example Ansible playbook that can be used to
+# add a description to interfaces on target network devices,
+# using the hostname and port found in the CDP neighbor table.
+
+- name: Add description to interfaces using CDP neighbor information
+  hosts: target_network_device
+  gather_facts: yes
+  gather_subset: all
+
+  tasks:
+    - name: Add description to interfaces
+      ios_config:
+        lines:
+          - description {{ item.value[0].host }} {{ item.value[0].port }}
+        #match: none
+        parents: interface {{ item.key }}
+      with_items: "{{ ansible_facts.net_neighbors }}"

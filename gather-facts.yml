@@ -1,0 +1,19 @@
+---
+- name: gather-facts.yml
+  hosts: all
+  gather_facts: yes
+  gather_subset: all   # The default subset only gathers basic info like serial number and OS version
+
+  tasks:
+# The following is not needed anymore as the "new" gather_facts module gathers facts 
+# from the network device in a vendor-agnostic way!
+#
+#   - name: Gather Cisco NXOS facts
+#     cisco.nxos.nxos_facts:
+#       gather_subset: all
+#     register: output
+
+    - name: Print network device(s) facts
+      ansible.builtin.debug:
+        msg:
+        - "{{ ansible_facts }}"
