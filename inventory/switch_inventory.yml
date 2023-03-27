@@ -1,0 +1,64 @@
+---
+
+#
+# Ansible inventory file example in YAML format
+#
+
+all:
+  children:
+    dc1:
+      children:
+        dc1_spines:
+          hosts:
+            dc1-swi-11:
+              hostname: dc1-swi-11.domain.local
+            dc1-swi-12:
+              hostname: dc1-swi-12.domain.local
+        dc1_leaves:
+          hosts:
+            dc1-swi-01:
+              hostname: dc1-swi-01.domain.local
+            dc1-swi-02:
+              hostname: dc1-swi-02.domain.local
+            dc1-swi-03:
+              hostname: dc1-swi-03.domain.local
+            dc1-swi-04:
+              hostname: dc1-swi-04.domain.local
+
+    dc2:
+      children:
+        dc2_spines:
+          hosts:
+            dc2-swi-11:
+              hostname: dc2-swi-01.domain.local
+            dc2-swi-12:
+              hostname: dc2-swi-02.domain.local
+        dc2_leaves:
+          hosts:
+            dc2-swi-01:
+              hostname: dc2-swi-08.domain.local
+            dc2-swi-02:
+              hostname: dc2-swi-08.domain.local
+            dc2-swi-03:
+              hostname: dc2-swi-08.domain.local
+            dc2-swi-14:
+              hostname: dc2-swi-08.domain.local
+    spines:
+      children:
+        dc1_spines:
+        dc2_spines:
+    leaves:
+      children:
+        dc1_leaves:
+        dc2_leaves:
+
+  vars:
+    ansible_user: user1
+    ansible_password: Cisco123!
+    ansible_become: yes
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_cli_ssh_type: paramiko
+    ansible_network_os: cisco.nxos.nxos
+    ansible_host_key_checking: False
+    # host_key_auto_add: True   -> does not work anymore
+    # auth_strict_key: False
